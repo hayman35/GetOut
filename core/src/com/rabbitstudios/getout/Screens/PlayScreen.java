@@ -14,15 +14,15 @@ import com.rabbitstudios.getout.GetOut;
 
 public class PlayScreen implements Screen {
     private GetOut game;
-    Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
+    private Hud hud;
 
     public PlayScreen(GetOut game){
         this.game = game;
-        texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(GetOut.v_width,GetOut.v_height);
+        hud = new Hud(game.batch);
     }
     @Override
     public void show() {
@@ -33,11 +33,8 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // clears the screen
-        game.batch.setProjectionMatrix(gamecam.combined); // sets the screen to not move the graphics
-        game.batch.begin(); // opens the batch file box
-        game.batch.draw(texture,0,0); // draws the texture
-        game.batch.end(); // closes the box and draws it to the screen
-
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined); // shows in the camera, we are showing the labels in hud
+        hud.stage.draw();
     }
 
     @Override
