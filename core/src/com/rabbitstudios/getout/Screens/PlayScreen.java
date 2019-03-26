@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -21,7 +22,7 @@ public class PlayScreen implements Screen {
         this.game = game;
         texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
-        gamePort = new ScreenViewport(gamecam);
+        gamePort = new FitViewport(GetOut.v_width,GetOut.v_height);
     }
     @Override
     public void show() {

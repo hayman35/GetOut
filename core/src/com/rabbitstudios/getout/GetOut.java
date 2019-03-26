@@ -10,6 +10,8 @@ import com.rabbitstudios.getout.Screens.PlayScreen;
 
 public class GetOut extends Game {
 	public SpriteBatch batch;
+    public static final int v_width = 400;
+	public static final int v_height = 208;
 
 	@Override
 	public void create () {
