@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.rabbitstudios.getout.GetOut;
 
+import javax.swing.Renderer;
+
 public class PlayScreen implements Screen {
     private GetOut game;
 
@@ -33,13 +35,18 @@ public class PlayScreen implements Screen {
     public PlayScreen(GetOut game){
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(GetOut.v_width,GetOut.v_height);
+        this.gamePort = new FitViewport(GetOut.v_width,GetOut.v_height,gamecam);
+        gamePort.apply();
+
         hud = new Hud(game.batch);
 
+        //Load our map and setup our map renderer
         maploader = new TmxMapLoader();
-       // map = maploader.load("PUTLEVELHERE.tmx");
+        map = maploader.load("level1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(gamePort.getScreenWidth() / 2, gamePort.getScreenHeight() / 2 , 0);
+
+        //initially set our gamcam to be centered correctly at the start of of map
+        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
     }
     @Override
