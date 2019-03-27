@@ -22,12 +22,12 @@ public class Hud {
     private Integer score;
 
     // These are the Widgets
-    Label countdownLabel;
-    Label scoreLabel;
-    Label timeLabel;
-    Label worldLabel;
-    Label levelLabel;
-    Label BunnyLabel;
+    private Label countdownLabel;
+    private Label scoreLabel;
+    private Label timeLabel;
+    private Label worldLabel;
+    private Label levelLabel;
+    private Label BunnyLabel;
 
     public Hud(SpriteBatch sb){
         worldTimer = 300;
@@ -39,25 +39,25 @@ public class Hud {
 
         // making a table so we can put objects or labels in there
         Table table = new Table();
-        table.top(); // alligning to the top of the stage
+        table.top(); // aligning to the top of the stage
         table.setFillParent(true); // table is the size of the stage
 
         // sets the labels
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =  new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel =  new Label(String.format("TIME"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel =  new Label(String.format("1-1"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        BunnyLabel =  new Label(String.format("BUNNY"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        worldLabel =  new Label(String.format("WORLD"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel =  new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        levelLabel =  new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        BunnyLabel =  new Label("BUNNY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        worldLabel =  new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
 
-        table.add(BunnyLabel).expandX().padTop(10); // expandx would extend it to the top of the screen and padtop would assign it to 10 pixels of section
-        table.add(worldLabel).expandX().padTop(10);
-        table.add(timeLabel).expandX().padTop(10);
+        table.add(BunnyLabel).expandX(); // expandx would extend it to the top of the screen and padtop would assign it to 10 pixels of section
+        table.add(worldLabel).expandX();
+        table.add(timeLabel).expandX();
         table.row(); // creates a new row
-        table.add(scoreLabel).expandX();
-        table.add(levelLabel).expandX();
-        table.add(countdownLabel).expandX();
+        table.add(scoreLabel);
+        table.add(levelLabel);
+        table.add(countdownLabel);
 
         stage.addActor(table); // adds the table to the stage
 

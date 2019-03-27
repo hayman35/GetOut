@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="100" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="18">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="72" columns="9">
+  <image source="../tileset.png" width="153" height="134"/>
+ </tileset>
+ <layer id="1" name="background" width="100" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6AKm39dt3ABkLBqqqqqqqqPB6anMMA=
+  </data>
+ </layer>
+ <layer id="4" name="graphics" width="100" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztkr0OgDAIhJ21G7q1bvr+jygdTAjR/iDqcl9ysSVwQcowAAAAAAAAAAAoMSpNrODk6eH1N73zsc7zzCfWxtrFNxj8dC9XXk/f6MpHnqW3notVZMinB3XRqQ/p2RLv3bM7n3yfWYvyJSdFQ358oa7Xjwp+Oq73u7ZnJf98T6xVvU10UjLWrB/WWfqXcTm3ln2p+Sd1zv90AEaUGbg=
+  </data>
+ </layer>
+ <objectgroup id="3" name="ground">
+  <object id="8" x="0" y="160" width="1248" height="48"/>
+  <object id="9" x="1248" y="176" width="96" height="32"/>
+  <object id="10" x="1344" y="160" width="256" height="48"/>
+  <object id="11" x="1424" y="144" width="160" height="16"/>
+  <object id="12" x="1072" y="128" width="64" height="16"/>
+  <object id="13" x="1040" y="144" width="176" height="16"/>
+  <object id="14" x="704" y="144" width="192" height="16"/>
+  <object id="15" x="736" y="128" width="96" height="16"/>
+  <object id="16" x="480" y="144" width="96" height="16"/>
+  <object id="17" x="288" y="144" width="96" height="16"/>
+ </objectgroup>
+</map>
