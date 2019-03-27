@@ -6,6 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -14,25 +17,55 @@ import com.rabbitstudios.getout.GetOut;
 
 public class PlayScreen implements Screen {
     private GetOut game;
+
+
+    //basic playscreen variables
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
+
+
+    //Tiled map variables
+    private TmxMapLoader maploader;
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
 
     public PlayScreen(GetOut game){
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(GetOut.v_width,GetOut.v_height);
         hud = new Hud(game.batch);
+
+        maploader = new TmxMapLoader();
+       // map = maploader.load("PUTLEVELHERE.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
+        gamecam.position.set(gamePort.getScreenWidth() / 2, gamePort.getScreenHeight() / 2 , 0);
+
     }
     @Override
     public void show() {
 
     }
+   public void handleInput(float dt){
+    if(Gdx.input.isTouched())
+        gamecam.position.x += 100 * dt;
+   }
+    public void update(float dt){
+       handleInput(dt);
+       gamecam.update();
+       renderer.setView(gamecam);
+    }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        update(delta);
+
+        // Clear the game screen with Black
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // clears the screen
+
+        renderer.render();
+
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined); // shows in the camera, we are showing the labels in hud
         hud.stage.draw();
     }
