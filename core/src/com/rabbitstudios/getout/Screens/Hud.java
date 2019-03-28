@@ -34,7 +34,7 @@ public class Hud {
         timeCount = 0;
         score = 0;
 
-        viewport = new FitViewport(GetOut.v_width,GetOut.v_height, new OrthographicCamera());
+        viewport = new FitViewport(GetOut.V_WIDTH,GetOut.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,sb); // Creates the stage with the sprites in there
 
         // making a table so we can put objects or labels in there
