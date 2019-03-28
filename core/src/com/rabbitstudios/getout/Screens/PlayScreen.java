@@ -51,7 +51,7 @@ public class PlayScreen implements Screen {
         this.game = game;
         //follows the bunny around
         gamecam = new OrthographicCamera();
-        this.gamePort = new FitViewport(GetOut.v_width,GetOut.v_height,gamecam);
+        this.gamePort = new FitViewport(GetOut.V_WIDTH,GetOut.V_HEIGHT,gamecam);
         gamePort.apply();
 
         //create a FitViewport to maintain virtual aspect ratio despite screen size
