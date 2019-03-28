@@ -71,15 +71,6 @@ public class PlayScreen implements Screen {
     public void show() {
 
     }
-   public void handleInput(float dt){
-    if(Gdx.input.isTouched())
-        gamecam.position.x += 100 * dt;
-   }
-    public void update(float dt){
-       handleInput(dt);
-       gamecam.update();
-       renderer.setView(gamecam);
-    }
 
     public void handleInput(float dt) {
         if (Gdx.input.isTouched()) {
