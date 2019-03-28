@@ -26,6 +26,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.rabbitstudios.getout.GetOut;
 import com.rabbitstudios.getout.Sprites.bunny;
+import com.rabbitstudios.getout.Tolols.B2WorldCreator;
 
 import javax.swing.Renderer;
 
@@ -63,7 +64,7 @@ public class PlayScreen implements Screen {
 
         //Load our map and setup our map renderer
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        map = maploader.load("./levels/level1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / GetOut.PPM);
         //initially set our gamcam to be centered correctly at the start of of map
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
@@ -73,55 +74,64 @@ public class PlayScreen implements Screen {
         //gets the lines for the world
         b2dr = new Box2DDebugRenderer();
 
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef();
-        Body body;
-
         //creates the player into the world
         player = new bunny(world);
 
-        //Create ground body to stay still
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+ rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() /2)/ GetOut.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-
-        }
-
-        // create pipe bodies
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() / 2)/ GetOut.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-        //create brick bodies
-            for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-                bdef.type = BodyDef.BodyType.StaticBody;
-                bdef.position.set((rect.getX() + rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
-
-                body = world.createBody(bdef);
-
-                shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() / 2)/ GetOut.PPM);
-                fdef.shape = shape;
-                body.createFixture(fdef);
-            }
+        new B2WorldCreator(world,map);
+//
+//        BodyDef bdef = new BodyDef();
+//        PolygonShape shape = new PolygonShape();
+//        FixtureDef fdef = new FixtureDef();
+//        Body body;
+//
+//
+//        //creates the player into the world
+//        player = new bunny(world);
+//
+//
+//        //Create ground body to stay still
+//        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+//            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+//
+//            bdef.type = BodyDef.BodyType.StaticBody;
+//            bdef.position.set((rect.getX()+ rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
+//
+//            body = world.createBody(bdef);
+//
+//            shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() /2)/ GetOut.PPM);
+//            fdef.shape = shape;
+//            body.createFixture(fdef);
+//
+//        }
+//
+////        // create poles bodies
+//        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+//            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+//
+//            bdef.type = BodyDef.BodyType.StaticBody;
+//            bdef.position.set((rect.getX() + rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
+//
+//            body = world.createBody(bdef);
+//
+//            shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() / 2)/ GetOut.PPM);
+//            fdef.shape = shape;
+//            body.createFixture(fdef);
+//        }
+//
+////        //create brick bodies
+//            for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+//                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+//
+//                bdef.type = BodyDef.BodyType.StaticBody;
+//                bdef.position.set((rect.getX() + rect.getWidth() / 2)/ GetOut.PPM, (rect.getY() + rect.getHeight() / 2)/ GetOut.PPM);
+//
+//                body = world.createBody(bdef);
+//
+//                shape.setAsBox((rect.getWidth() / 2)/ GetOut.PPM, (rect.getHeight() / 2)/ GetOut.PPM);
+//                fdef.shape = shape;
+//                body.createFixture(fdef);
+//            }
         // create coin bodies
     }
     @Override
